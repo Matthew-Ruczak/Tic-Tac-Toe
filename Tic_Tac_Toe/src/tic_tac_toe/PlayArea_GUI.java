@@ -5,19 +5,41 @@
  */
 package tic_tac_toe;
 
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JButton;
 /**
  *
  * @author Matthew
  */
 public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
+    //Fields
+    private int playersTurn; //Holds who turn it is (Player1 = 0, Player2 = 1)
+    private int[][] ticTacToeAreaGrid = new int[3][3];  //Holds which positions each player has clicked
+    
+    
     /**
      * Creates new form PlayArea_GUI
      */
     public PlayArea_GUI() {
         initComponents();
+        
+        
+        //Adding the Default Action Listener to handle when the user clicks on the squares
+        ticTacToeSquare_0.addActionListener(this);
+        ticTacToeSquare_1.addActionListener(this);
+        ticTacToeSquare_2.addActionListener(this);
+        ticTacToeSquare_3.addActionListener(this);
+        ticTacToeSquare_4.addActionListener(this);
+        ticTacToeSquare_5.addActionListener(this);
+        ticTacToeSquare_6.addActionListener(this);
+        ticTacToeSquare_7.addActionListener(this);
+        ticTacToeSquare_8.addActionListener(this);
+        
+        //Setting up ticTacToeGrid Array (This will be used to determine if a player won
+        clearTicTacToeAreaGridArray();
     }
 
     /**
@@ -49,37 +71,44 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
         playerTurn_Label = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
-        //Adding Listeners to all of the Tic Tac Toe Squares
-        ticTacToeSquare_0.addActionListener(this);
-        ticTacToeSquare_1.addActionListener(this);
-        ticTacToeSquare_2.addActionListener(this);
-        ticTacToeSquare_3.addActionListener(this);
-        ticTacToeSquare_4.addActionListener(this);
-        ticTacToeSquare_5.addActionListener(this);
-        ticTacToeSquare_6.addActionListener(this);
-        ticTacToeSquare_7.addActionListener(this);
-        ticTacToeSquare_8.addActionListener(this);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         ticTacToeArea.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
+        ticTacToeSquare_1.setFont(new java.awt.Font("Tahoma", 1, 64)); // NOI18N
+        ticTacToeSquare_1.setName("ticTacToeSquare_1_0"); // NOI18N
         ticTacToeSquare_1.setPreferredSize(new java.awt.Dimension(90, 90));
 
+        ticTacToeSquare_2.setFont(new java.awt.Font("Tahoma", 1, 64)); // NOI18N
+        ticTacToeSquare_2.setName("ticTacToeSquare_2_0"); // NOI18N
         ticTacToeSquare_2.setPreferredSize(new java.awt.Dimension(90, 90));
 
+        ticTacToeSquare_0.setFont(new java.awt.Font("Tahoma", 1, 64)); // NOI18N
+        ticTacToeSquare_0.setName("ticTacToeSquare_0_0"); // NOI18N
         ticTacToeSquare_0.setPreferredSize(new java.awt.Dimension(90, 90));
 
+        ticTacToeSquare_3.setFont(new java.awt.Font("Tahoma", 1, 64)); // NOI18N
+        ticTacToeSquare_3.setName("ticTacToeSquare_0_1"); // NOI18N
         ticTacToeSquare_3.setPreferredSize(new java.awt.Dimension(90, 90));
 
+        ticTacToeSquare_4.setFont(new java.awt.Font("Tahoma", 1, 64)); // NOI18N
+        ticTacToeSquare_4.setName("ticTacToeSquare_1_1"); // NOI18N
         ticTacToeSquare_4.setPreferredSize(new java.awt.Dimension(90, 90));
 
+        ticTacToeSquare_5.setFont(new java.awt.Font("Tahoma", 1, 64)); // NOI18N
+        ticTacToeSquare_5.setName("ticTacToeSquare_2_1"); // NOI18N
         ticTacToeSquare_5.setPreferredSize(new java.awt.Dimension(90, 90));
 
+        ticTacToeSquare_6.setFont(new java.awt.Font("Tahoma", 1, 64)); // NOI18N
+        ticTacToeSquare_6.setName("ticTacToeSquare_0_2"); // NOI18N
         ticTacToeSquare_6.setPreferredSize(new java.awt.Dimension(90, 90));
 
+        ticTacToeSquare_7.setFont(new java.awt.Font("Tahoma", 1, 64)); // NOI18N
+        ticTacToeSquare_7.setName("ticTacToeSquare_1_2"); // NOI18N
         ticTacToeSquare_7.setPreferredSize(new java.awt.Dimension(90, 90));
 
+        ticTacToeSquare_8.setFont(new java.awt.Font("Tahoma", 1, 64)); // NOI18N
+        ticTacToeSquare_8.setName("ticTacToeSquare_2_2"); // NOI18N
         ticTacToeSquare_8.setPreferredSize(new java.awt.Dimension(90, 90));
 
         javax.swing.GroupLayout ticTacToeAreaLayout = new javax.swing.GroupLayout(ticTacToeArea);
@@ -286,7 +315,49 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
     // End of variables declaration//GEN-END:variables
     
     public void actionPerformed(ActionEvent e) {
-        JOptionPane.showConfirmDialog(rootPane, "Hello World");
+        JButton btnThatWasClicked = (JButton)e.getSource();
+        String btnThatWasClickedName = btnThatWasClicked.getName();
+        int btnThatWasClicked_XPosition = Integer.parseInt(btnThatWasClickedName.split("_")[1]);
+        int btnThatWasClicked_YPosition = Integer.parseInt(btnThatWasClickedName.split("_")[2]);
+        
+        //Checking if the square the user clicked is blank
+        if (ticTacToeAreaGrid[btnThatWasClicked_XPosition][btnThatWasClicked_YPosition] == -1){
+            //Checking which player click the square
+            if (playersTurn == 0){
+                btnThatWasClicked.setText("X"); //Putting an X in the btn that was clicked
+                //Setting the Grid array to reflect the newly click button
+                ticTacToeAreaGrid[btnThatWasClicked_XPosition][btnThatWasClicked_YPosition] = 0;
+                switchPlayerTurns();    //Making it player2's turn
+                
+            }else{  //Since it is not player1's turn, it must be player2's turn
+                btnThatWasClicked.setText("O"); //Putting an O in the btn that was clicked
+                //Setting the Grid array to reflect the newly click button
+                ticTacToeAreaGrid[btnThatWasClicked_XPosition][btnThatWasClicked_YPosition] = 1;
+                switchPlayerTurns();    //Making it player1's turn
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "This square has already been clicked");
+        }
     }
-
+    
+    //When called, this will switch which players turn it is (Updates variable and GUI to reflect this)
+    private void switchPlayerTurns(){
+        if (playersTurn == 0){  //Since it is player 1's turn
+            playersTurn = 1;    //Making it player 2's turn
+            playerTurn_Label.setText("Player 2");   //Changing the GUI to reflect that it is player 2's turn
+        }else{  //Since it is player 2's turn
+            playersTurn = 0;    //Making it player 1's turn
+            playerTurn_Label.setText("Player 1");   //Changing the GUI to reflect that it is player 1's turn
+        }
+    }
+    
+    //Clears the ticTacToeAreaGrid (2D Array) and sets all position to -1 (Blank)
+    public void clearTicTacToeAreaGridArray(){
+        //Setting all spaces in the grid to -1 (Blank)
+        for (int[] ticTacToeAreaGridX : ticTacToeAreaGrid) {
+            for (int y = 0; y < ticTacToeAreaGridX.length; y++) {
+                ticTacToeAreaGridX[y] = -1;
+            }
+        }
+    }
 }

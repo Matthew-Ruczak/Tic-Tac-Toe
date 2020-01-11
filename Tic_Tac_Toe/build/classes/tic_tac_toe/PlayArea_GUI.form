@@ -112,6 +112,10 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="ticTacToeSquare_1">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="64" style="1"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="ticTacToeSquare_1_0" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[90, 90]"/>
             </Property>
@@ -119,6 +123,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="ticTacToeSquare_2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="64" style="1"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="ticTacToeSquare_2_0" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[90, 90]"/>
             </Property>
@@ -126,6 +134,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="ticTacToeSquare_0">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="64" style="1"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="ticTacToeSquare_0_0" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[90, 90]"/>
             </Property>
@@ -133,6 +145,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="ticTacToeSquare_3">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="64" style="1"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="ticTacToeSquare_0_1" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[90, 90]"/>
             </Property>
@@ -140,6 +156,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="ticTacToeSquare_4">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="64" style="1"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="ticTacToeSquare_1_1" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[90, 90]"/>
             </Property>
@@ -147,6 +167,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="ticTacToeSquare_5">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="64" style="1"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="ticTacToeSquare_2_1" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[90, 90]"/>
             </Property>
@@ -154,6 +178,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="ticTacToeSquare_6">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="64" style="1"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="ticTacToeSquare_0_2" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[90, 90]"/>
             </Property>
@@ -161,6 +189,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="ticTacToeSquare_7">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="64" style="1"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="ticTacToeSquare_1_2" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[90, 90]"/>
             </Property>
@@ -168,6 +200,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="ticTacToeSquare_8">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="64" style="1"/>
+            </Property>
+            <Property name="name" type="java.lang.String" value="ticTacToeSquare_2_2" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[90, 90]"/>
             </Property>
