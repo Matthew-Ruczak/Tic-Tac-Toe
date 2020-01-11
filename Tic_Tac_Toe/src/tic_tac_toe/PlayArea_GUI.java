@@ -5,11 +5,14 @@
  */
 package tic_tac_toe;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Matthew
  */
-public class PlayArea_GUI extends javax.swing.JFrame {
+public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
     /**
      * Creates new form PlayArea_GUI
      */
@@ -27,15 +30,15 @@ public class PlayArea_GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         ticTacToeArea = new javax.swing.JPanel();
-        ticTacToeSquare_0 = new javax.swing.JPanel();
-        ticTacToeSquare_1 = new javax.swing.JPanel();
-        ticTacToeSquare_2 = new javax.swing.JPanel();
-        ticTacToeSquare_3 = new javax.swing.JPanel();
-        ticTacToeSquare_4 = new javax.swing.JPanel();
-        ticTacToeSquare_5 = new javax.swing.JPanel();
-        ticTacToeSquare_6 = new javax.swing.JPanel();
-        ticTacToeSquare_7 = new javax.swing.JPanel();
-        ticTacToeSquare_8 = new javax.swing.JPanel();
+        ticTacToeSquare_1 = new javax.swing.JButton();
+        ticTacToeSquare_2 = new javax.swing.JButton();
+        ticTacToeSquare_0 = new javax.swing.JButton();
+        ticTacToeSquare_3 = new javax.swing.JButton();
+        ticTacToeSquare_4 = new javax.swing.JButton();
+        ticTacToeSquare_5 = new javax.swing.JButton();
+        ticTacToeSquare_6 = new javax.swing.JButton();
+        ticTacToeSquare_7 = new javax.swing.JButton();
+        ticTacToeSquare_8 = new javax.swing.JButton();
         userInfoArea = new javax.swing.JPanel();
         howToPlay_Btn = new javax.swing.JButton();
         undo_Btn = new javax.swing.JButton();
@@ -46,144 +49,38 @@ public class PlayArea_GUI extends javax.swing.JFrame {
         playerTurn_Label = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
+        //Adding Listeners to all of the Tic Tac Toe Squares
+        ticTacToeSquare_0.addActionListener(this);
+        ticTacToeSquare_1.addActionListener(this);
+        ticTacToeSquare_2.addActionListener(this);
+        ticTacToeSquare_3.addActionListener(this);
+        ticTacToeSquare_4.addActionListener(this);
+        ticTacToeSquare_5.addActionListener(this);
+        ticTacToeSquare_6.addActionListener(this);
+        ticTacToeSquare_7.addActionListener(this);
+        ticTacToeSquare_8.addActionListener(this);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         ticTacToeArea.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
-        ticTacToeSquare_0.setBackground(new java.awt.Color(255, 255, 255));
-        ticTacToeSquare_0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        ticTacToeSquare_0.setPreferredSize(new java.awt.Dimension(90, 90));
-
-        javax.swing.GroupLayout ticTacToeSquare_0Layout = new javax.swing.GroupLayout(ticTacToeSquare_0);
-        ticTacToeSquare_0.setLayout(ticTacToeSquare_0Layout);
-        ticTacToeSquare_0Layout.setHorizontalGroup(
-            ticTacToeSquare_0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-        ticTacToeSquare_0Layout.setVerticalGroup(
-            ticTacToeSquare_0Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-
-        ticTacToeSquare_1.setBackground(new java.awt.Color(255, 255, 255));
-        ticTacToeSquare_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ticTacToeSquare_1.setPreferredSize(new java.awt.Dimension(90, 90));
 
-        javax.swing.GroupLayout ticTacToeSquare_1Layout = new javax.swing.GroupLayout(ticTacToeSquare_1);
-        ticTacToeSquare_1.setLayout(ticTacToeSquare_1Layout);
-        ticTacToeSquare_1Layout.setHorizontalGroup(
-            ticTacToeSquare_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-        ticTacToeSquare_1Layout.setVerticalGroup(
-            ticTacToeSquare_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-
-        ticTacToeSquare_2.setBackground(new java.awt.Color(255, 255, 255));
-        ticTacToeSquare_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ticTacToeSquare_2.setPreferredSize(new java.awt.Dimension(90, 90));
 
-        javax.swing.GroupLayout ticTacToeSquare_2Layout = new javax.swing.GroupLayout(ticTacToeSquare_2);
-        ticTacToeSquare_2.setLayout(ticTacToeSquare_2Layout);
-        ticTacToeSquare_2Layout.setHorizontalGroup(
-            ticTacToeSquare_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-        ticTacToeSquare_2Layout.setVerticalGroup(
-            ticTacToeSquare_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
+        ticTacToeSquare_0.setPreferredSize(new java.awt.Dimension(90, 90));
 
-        ticTacToeSquare_3.setBackground(new java.awt.Color(255, 255, 255));
-        ticTacToeSquare_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ticTacToeSquare_3.setPreferredSize(new java.awt.Dimension(90, 90));
 
-        javax.swing.GroupLayout ticTacToeSquare_3Layout = new javax.swing.GroupLayout(ticTacToeSquare_3);
-        ticTacToeSquare_3.setLayout(ticTacToeSquare_3Layout);
-        ticTacToeSquare_3Layout.setHorizontalGroup(
-            ticTacToeSquare_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-        ticTacToeSquare_3Layout.setVerticalGroup(
-            ticTacToeSquare_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-
-        ticTacToeSquare_4.setBackground(new java.awt.Color(255, 255, 255));
-        ticTacToeSquare_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ticTacToeSquare_4.setPreferredSize(new java.awt.Dimension(90, 90));
 
-        javax.swing.GroupLayout ticTacToeSquare_4Layout = new javax.swing.GroupLayout(ticTacToeSquare_4);
-        ticTacToeSquare_4.setLayout(ticTacToeSquare_4Layout);
-        ticTacToeSquare_4Layout.setHorizontalGroup(
-            ticTacToeSquare_4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-        ticTacToeSquare_4Layout.setVerticalGroup(
-            ticTacToeSquare_4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-
-        ticTacToeSquare_5.setBackground(new java.awt.Color(255, 255, 255));
-        ticTacToeSquare_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ticTacToeSquare_5.setPreferredSize(new java.awt.Dimension(90, 90));
 
-        javax.swing.GroupLayout ticTacToeSquare_5Layout = new javax.swing.GroupLayout(ticTacToeSquare_5);
-        ticTacToeSquare_5.setLayout(ticTacToeSquare_5Layout);
-        ticTacToeSquare_5Layout.setHorizontalGroup(
-            ticTacToeSquare_5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-        ticTacToeSquare_5Layout.setVerticalGroup(
-            ticTacToeSquare_5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-
-        ticTacToeSquare_6.setBackground(new java.awt.Color(255, 255, 255));
-        ticTacToeSquare_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ticTacToeSquare_6.setPreferredSize(new java.awt.Dimension(90, 90));
 
-        javax.swing.GroupLayout ticTacToeSquare_6Layout = new javax.swing.GroupLayout(ticTacToeSquare_6);
-        ticTacToeSquare_6.setLayout(ticTacToeSquare_6Layout);
-        ticTacToeSquare_6Layout.setHorizontalGroup(
-            ticTacToeSquare_6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-        ticTacToeSquare_6Layout.setVerticalGroup(
-            ticTacToeSquare_6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-
-        ticTacToeSquare_7.setBackground(new java.awt.Color(255, 255, 255));
-        ticTacToeSquare_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ticTacToeSquare_7.setPreferredSize(new java.awt.Dimension(90, 90));
 
-        javax.swing.GroupLayout ticTacToeSquare_7Layout = new javax.swing.GroupLayout(ticTacToeSquare_7);
-        ticTacToeSquare_7.setLayout(ticTacToeSquare_7Layout);
-        ticTacToeSquare_7Layout.setHorizontalGroup(
-            ticTacToeSquare_7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-        ticTacToeSquare_7Layout.setVerticalGroup(
-            ticTacToeSquare_7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-
-        ticTacToeSquare_8.setBackground(new java.awt.Color(255, 255, 255));
-        ticTacToeSquare_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ticTacToeSquare_8.setPreferredSize(new java.awt.Dimension(90, 90));
-
-        javax.swing.GroupLayout ticTacToeSquare_8Layout = new javax.swing.GroupLayout(ticTacToeSquare_8);
-        ticTacToeSquare_8.setLayout(ticTacToeSquare_8Layout);
-        ticTacToeSquare_8Layout.setHorizontalGroup(
-            ticTacToeSquare_8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-        ticTacToeSquare_8Layout.setVerticalGroup(
-            ticTacToeSquare_8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout ticTacToeAreaLayout = new javax.swing.GroupLayout(ticTacToeArea);
         ticTacToeArea.setLayout(ticTacToeAreaLayout);
@@ -191,48 +88,42 @@ public class PlayArea_GUI extends javax.swing.JFrame {
             ticTacToeAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ticTacToeAreaLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(ticTacToeAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(ticTacToeSquare_3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ticTacToeSquare_6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ticTacToeSquare_0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(ticTacToeAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(ticTacToeAreaLayout.createSequentialGroup()
-                        .addComponent(ticTacToeSquare_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(ticTacToeSquare_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ticTacToeAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(ticTacToeAreaLayout.createSequentialGroup()
-                            .addComponent(ticTacToeSquare_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(27, 27, 27)
-                            .addComponent(ticTacToeSquare_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(ticTacToeAreaLayout.createSequentialGroup()
-                            .addComponent(ticTacToeSquare_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ticTacToeSquare_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                    .addComponent(ticTacToeSquare_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ticTacToeSquare_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ticTacToeSquare_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(ticTacToeAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ticTacToeSquare_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ticTacToeSquare_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ticTacToeSquare_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ticTacToeAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(ticTacToeSquare_2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ticTacToeSquare_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ticTacToeSquare_8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         ticTacToeAreaLayout.setVerticalGroup(
             ticTacToeAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ticTacToeAreaLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(33, 33, 33)
                 .addGroup(ticTacToeAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ticTacToeAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(ticTacToeSquare_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ticTacToeSquare_0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(ticTacToeSquare_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ticTacToeSquare_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ticTacToeSquare_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ticTacToeSquare_0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(ticTacToeAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ticTacToeSquare_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ticTacToeSquare_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ticTacToeSquare_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addGroup(ticTacToeAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ticTacToeAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(ticTacToeSquare_6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ticTacToeSquare_7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(ticTacToeSquare_8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(ticTacToeSquare_5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ticTacToeSquare_3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ticTacToeSquare_4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(ticTacToeAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ticTacToeSquare_7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ticTacToeSquare_8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ticTacToeSquare_6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44))
         );
 
         userInfoArea.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -381,16 +272,21 @@ public class PlayArea_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel playerTurn_Label;
     private javax.swing.JButton restart_Btn;
     private javax.swing.JPanel ticTacToeArea;
-    private javax.swing.JPanel ticTacToeSquare_0;
-    private javax.swing.JPanel ticTacToeSquare_1;
-    private javax.swing.JPanel ticTacToeSquare_2;
-    private javax.swing.JPanel ticTacToeSquare_3;
-    private javax.swing.JPanel ticTacToeSquare_4;
-    private javax.swing.JPanel ticTacToeSquare_5;
-    private javax.swing.JPanel ticTacToeSquare_6;
-    private javax.swing.JPanel ticTacToeSquare_7;
-    private javax.swing.JPanel ticTacToeSquare_8;
+    private javax.swing.JButton ticTacToeSquare_0;
+    private javax.swing.JButton ticTacToeSquare_1;
+    private javax.swing.JButton ticTacToeSquare_2;
+    private javax.swing.JButton ticTacToeSquare_3;
+    private javax.swing.JButton ticTacToeSquare_4;
+    private javax.swing.JButton ticTacToeSquare_5;
+    private javax.swing.JButton ticTacToeSquare_6;
+    private javax.swing.JButton ticTacToeSquare_7;
+    private javax.swing.JButton ticTacToeSquare_8;
     private javax.swing.JButton undo_Btn;
     private javax.swing.JPanel userInfoArea;
     // End of variables declaration//GEN-END:variables
+    
+    public void actionPerformed(ActionEvent e) {
+        JOptionPane.showConfirmDialog(rootPane, "Hello World");
+    }
+
 }
