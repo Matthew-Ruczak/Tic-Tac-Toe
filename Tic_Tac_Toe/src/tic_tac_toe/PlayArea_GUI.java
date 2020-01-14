@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Random;
+import java.util.Stack;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 /**
@@ -19,6 +20,8 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
     //Fields
     private int playersTurn; //Holds who turn it is (Player1 = 0, Player2 = 1)
     private int[][] ticTacToeAreaGrid = new int[3][3];  //Holds which positions each player has clicked
+    private JButton[][] ticTacToeBtnsGrid = new JButton[3][3];  //This will hold reference to the buttons in the GUI
+    private Stack<PreviousPlayerAction> previousPlayerActions;  //This will be used for the Undo functionality
     
     
     /**
@@ -27,8 +30,24 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
     public PlayArea_GUI() {
         initComponents();
         
+        //Setting up ticTacToeBtnsGrid Array to hold reference to the buttons in the GUI
+        ticTacToeBtnsGrid[0][0] = ticTacToeSquare_0;
+        ticTacToeBtnsGrid[1][0] = ticTacToeSquare_1;
+        ticTacToeBtnsGrid[2][0] = ticTacToeSquare_2;
+        ticTacToeBtnsGrid[0][1] = ticTacToeSquare_3;
+        ticTacToeBtnsGrid[1][1] = ticTacToeSquare_4;
+        ticTacToeBtnsGrid[2][1] = ticTacToeSquare_5;
+        ticTacToeBtnsGrid[0][2] = ticTacToeSquare_6;
+        ticTacToeBtnsGrid[1][2] = ticTacToeSquare_7;
+        ticTacToeBtnsGrid[2][2] = ticTacToeSquare_8;
         
         //Adding the Default Action Listener to handle when the user clicks on the squares
+        for (JButton[] ticTacToeBtnsGridX : ticTacToeBtnsGrid) {
+            for (JButton ticTacToeBtnsGrid_Btn : ticTacToeBtnsGridX) {
+                ticTacToeBtnsGrid_Btn.addActionListener(this);
+            }
+        }
+        /*
         ticTacToeSquare_0.addActionListener(this);
         ticTacToeSquare_1.addActionListener(this);
         ticTacToeSquare_2.addActionListener(this);
@@ -38,11 +57,15 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
         ticTacToeSquare_6.addActionListener(this);
         ticTacToeSquare_7.addActionListener(this);
         ticTacToeSquare_8.addActionListener(this);
+        */
         
         //Setting up ticTacToeGrid Array (This will be used to determine if a player won
         clearTicTacToeAreaGridArray();
         //Determining which player should go first
         getAndSetStartingPlayer();
+        
+        //Creating an instance stack to be used for the Undo functionality
+        previousPlayerActions = new Stack();
     }
 
     /**
@@ -165,6 +188,11 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
 
         undo_Btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         undo_Btn.setText("Undo");
+        undo_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                undo_BtnActionPerformed(evt);
+            }
+        });
 
         restart_Btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         restart_Btn.setText("Restart");
@@ -270,6 +298,26 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
         restartGame();
     }//GEN-LAST:event_restart_BtnActionPerformed
 
+    private void undo_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undo_BtnActionPerformed
+        //Checking if there are actions to undo
+        if (!previousPlayerActions.empty()){    //If the stack is not empty
+            PreviousPlayerAction prevAction = previousPlayerActions.pop();
+        
+            //Setting the current players turn to the one that was stored
+            if (playersTurn != prevAction.getPlayersTurn()){    //Checking if the playersTurn value needs to be updated
+                switchPlayerTurns();
+            }
+
+            //Setting the current ticTacToeAreaGrid to the one that was stored
+            ticTacToeAreaGrid = prevAction.getGridLayout();
+
+            //Updating the GUI (The Tic Tac Toes Square) to reflect the changes
+            refreshTicTacToeSquares();
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "There are no actions to undo!");
+        }
+    }//GEN-LAST:event_undo_BtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -336,6 +384,9 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
         
         //Checking if the square the user clicked is blank
         if (ticTacToeAreaGrid[btnThatWasClicked_XPosition][btnThatWasClicked_YPosition] == -1){
+            //Taking a hard copy of the current state of the game
+            takeHardCopyOfCurrentStateOfGame();
+            
             //Checking which player click the square
             if (playersTurn == 0){
                 btnThatWasClicked.setText("X"); //Putting an X in the btn that was clicked
@@ -413,6 +464,7 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
         clearTicTacToeAreaGridArray();
         clearTicTacToeGUISquares();
         getAndSetStartingPlayer();
+        previousPlayerActions = new Stack();    //Clearing the stack of previous user actions
     }
     
     private int checkIfWinner(int playerNum){
@@ -452,6 +504,37 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
         }else{  //Since it did not return player 1's turn, it must be player 2's turn
             playersTurn = 1;    //Making it player 2's turn
             playerTurn_Label.setText("Player 2");   //Changing the GUI to reflect that it is player 2's turn
+        }
+    }
+    
+    //Makes a hard copy of the current ticTacToeGrid and the current players turn and adds this object to the Stack
+    private void takeHardCopyOfCurrentStateOfGame(){
+        int[][] tmpGrid = new int[3][3];
+        
+        //Setting all spaces in the grid to -1 (Blank)
+        for (int x = 0; x < ticTacToeAreaGrid.length; x++) {
+            for (int y = 0; y < ticTacToeAreaGrid[x].length; y++) {
+                tmpGrid[x][y] = ticTacToeAreaGrid[x][y];
+            }
+        }
+        
+        previousPlayerActions.push(new PreviousPlayerAction(playersTurn, tmpGrid));
+    }
+    
+    //Updates the GUI Tic Tac Toe Square to reflect the current values in the ticTacToeGridArea Array
+    private void refreshTicTacToeSquares(){
+        //Going through all of the Tic Tac Toe Squares in the GUI
+        for (int x = 0; x < ticTacToeAreaGrid.length; x++){
+            for (int y = 0; y < ticTacToeAreaGrid[x].length; y++){
+                if (ticTacToeAreaGrid[x][y] == 0){  //Checking if this is player 1's square
+                    ticTacToeBtnsGrid[x][y].setText("X");
+                }else if (ticTacToeAreaGrid[x][y] == 1){    //Checking if this is player 2's square
+                    ticTacToeBtnsGrid[x][y].setText("O");
+                }else{  //Then, it must be a blank square
+                    ticTacToeBtnsGrid[x][y].setText("");
+                }
+                
+            }
         }
     }
 }
