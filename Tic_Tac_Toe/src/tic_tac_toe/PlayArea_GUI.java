@@ -8,6 +8,7 @@ package tic_tac_toe;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 /**
@@ -40,6 +41,8 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
         
         //Setting up ticTacToeGrid Array (This will be used to determine if a player won
         clearTicTacToeAreaGridArray();
+        //Determining which player should go first
+        getAndSetStartingPlayer();
     }
 
     /**
@@ -314,11 +317,12 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JPanel userInfoArea;
     // End of variables declaration//GEN-END:variables
     
+    //This function handles when a tic tac toe square is clicked
     public void actionPerformed(ActionEvent e) {
-        JButton btnThatWasClicked = (JButton)e.getSource();
-        String btnThatWasClickedName = btnThatWasClicked.getName();
-        int btnThatWasClicked_XPosition = Integer.parseInt(btnThatWasClickedName.split("_")[1]);
-        int btnThatWasClicked_YPosition = Integer.parseInt(btnThatWasClickedName.split("_")[2]);
+        JButton btnThatWasClicked = (JButton)e.getSource(); //Getting the button object that was clicked
+        String btnThatWasClickedName = btnThatWasClicked.getName(); //Getting the name of the button that was clicked
+        int btnThatWasClicked_XPosition = Integer.parseInt(btnThatWasClickedName.split("_")[1]);    //Getting the button's that was clicked X position in the GUI
+        int btnThatWasClicked_YPosition = Integer.parseInt(btnThatWasClickedName.split("_")[2]);    //Getting the button's that was clicked Y position in the GUI
         
         //Checking if the square the user clicked is blank
         if (ticTacToeAreaGrid[btnThatWasClicked_XPosition][btnThatWasClicked_YPosition] == -1){
@@ -327,15 +331,35 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
                 btnThatWasClicked.setText("X"); //Putting an X in the btn that was clicked
                 //Setting the Grid array to reflect the newly click button
                 ticTacToeAreaGrid[btnThatWasClicked_XPosition][btnThatWasClicked_YPosition] = 0;
-                switchPlayerTurns();    //Making it player2's turn
+                //Checking to see if the player made a winning move
+                if(checkIfWinner(0) == 0){
+                    if(JOptionPane.showConfirmDialog(rootPane, "Player 1 Won! \n Would you like to play again?") == JOptionPane.YES_OPTION){
+                        //Restarting the game
+                        restartGame();
+                    }else{
+                        System.exit(0); //Closing the Game
+                    }
+                }else{
+                    switchPlayerTurns();    //Making it player2's turn
+                }
                 
             }else{  //Since it is not player1's turn, it must be player2's turn
                 btnThatWasClicked.setText("O"); //Putting an O in the btn that was clicked
                 //Setting the Grid array to reflect the newly click button
                 ticTacToeAreaGrid[btnThatWasClicked_XPosition][btnThatWasClicked_YPosition] = 1;
-                switchPlayerTurns();    //Making it player1's turn
+                //Checking to see if the player made a winning move
+                if(checkIfWinner(1) == 1){
+                    if(JOptionPane.showConfirmDialog(rootPane, "Player 2 Won! \n Would you like to play again?") == JOptionPane.YES_OPTION){
+                        //Restarting the game
+                        restartGame();
+                    }else{
+                        System.exit(0); //Closing the Game
+                    }
+                }else{
+                    switchPlayerTurns();    //Making it player2's turn
+                }
             }
-        }else{
+        }else{ //This button is not blank so, telling the users this button has already been clicked
             JOptionPane.showMessageDialog(rootPane, "This square has already been clicked");
         }
     }
@@ -358,6 +382,66 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
             for (int y = 0; y < ticTacToeAreaGridX.length; y++) {
                 ticTacToeAreaGridX[y] = -1;
             }
+        }
+    }
+    
+    //Clears the tic tac toes squares (GUI) by setting there text to ""
+    private void clearTicTacToeGUISquares(){
+        ticTacToeSquare_0.setText("");
+        ticTacToeSquare_1.setText("");
+        ticTacToeSquare_2.setText("");
+        ticTacToeSquare_3.setText("");
+        ticTacToeSquare_4.setText("");
+        ticTacToeSquare_5.setText("");
+        ticTacToeSquare_6.setText("");
+        ticTacToeSquare_7.setText("");
+        ticTacToeSquare_8.setText("");
+    }
+    
+    //Resets the Game
+    private void restartGame(){
+        clearTicTacToeAreaGridArray();
+        clearTicTacToeGUISquares();
+        getAndSetStartingPlayer();
+    }
+    
+    private int checkIfWinner(int playerNum){
+        //Checking if there is three of the same numbers going horizontally (left to right) for all three rows
+        for (int y = 0; y < 3; y++){
+            if (ticTacToeAreaGrid[0][y] == playerNum && ticTacToeAreaGrid[1][y] == playerNum && ticTacToeAreaGrid[2][y] == playerNum){
+                return playerNum;
+            }
+        }
+        //Checking if there is three of the same number going vertically (top to bottom) for all three columns
+        for (int x = 0; x < 3; x++){
+            if (ticTacToeAreaGrid[x][0] == playerNum && ticTacToeAreaGrid[x][1] == playerNum && ticTacToeAreaGrid[x][2] == playerNum){
+                return playerNum;
+            }
+        }
+        //Checking if there is three of the same numbers going diagonally (Top Left to Bottom Right)
+        if (ticTacToeAreaGrid[0][0] == playerNum && ticTacToeAreaGrid[1][1] == playerNum && ticTacToeAreaGrid[2][2] == playerNum){
+            return playerNum;
+        }
+        //Checking if there is three of the same numbers going diagonally (Bottom Left Top Right)
+        if (ticTacToeAreaGrid[0][2] == playerNum && ticTacToeAreaGrid[1][1] == playerNum && ticTacToeAreaGrid[2][0] == playerNum){
+            return playerNum;
+        }
+        
+        //Since no winners where found, returning -1
+        return -1;
+    }
+    
+    //Determines which player will start and set what is needed accordingly (variables and GUI)
+    private void getAndSetStartingPlayer(){
+        Random ranObj = new Random();
+        
+        //Getting which player is going to start
+        if(ranObj.nextInt(2) == 0){ //Getting a number between 0 and 1
+            playersTurn = 0;    //Making it player 1's turn
+            playerTurn_Label.setText("Player 1");   //Changing the GUI to reflect that it is player 1's turn
+        }else{  //Since it did not return player 1's turn, it must be player 2's turn
+            playersTurn = 1;    //Making it player 2's turn
+            playerTurn_Label.setText("Player 2");   //Changing the GUI to reflect that it is player 2's turn
         }
     }
 }
