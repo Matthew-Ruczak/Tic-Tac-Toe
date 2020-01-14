@@ -168,6 +168,11 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
 
         restart_Btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         restart_Btn.setText("Restart");
+        restart_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restart_BtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Players Info.");
@@ -259,6 +264,11 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void restart_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restart_BtnActionPerformed
+        // TODO add your handling code here:
+        restartGame();
+    }//GEN-LAST:event_restart_BtnActionPerformed
 
     /**
      * @param args the command line arguments
