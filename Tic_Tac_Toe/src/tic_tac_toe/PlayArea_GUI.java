@@ -20,6 +20,7 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
     //Fields
     private int playersTurn; //Holds who turn it is (Player1 = 0, Player2 = 1)
     private int[][] ticTacToeAreaGrid = new int[3][3];  //Holds which positions each player has clicked
+    private int numberOfTurnsCompleted; //Holds the sum of the number of turns between all players
     private JButton[][] ticTacToeBtnsGrid = new JButton[3][3];  //This will hold reference to the buttons in the GUI
     private Stack<PreviousPlayerAction> previousPlayerActions;  //This will be used for the Undo functionality
     
@@ -47,17 +48,6 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
                 ticTacToeBtnsGrid_Btn.addActionListener(this);
             }
         }
-        /*
-        ticTacToeSquare_0.addActionListener(this);
-        ticTacToeSquare_1.addActionListener(this);
-        ticTacToeSquare_2.addActionListener(this);
-        ticTacToeSquare_3.addActionListener(this);
-        ticTacToeSquare_4.addActionListener(this);
-        ticTacToeSquare_5.addActionListener(this);
-        ticTacToeSquare_6.addActionListener(this);
-        ticTacToeSquare_7.addActionListener(this);
-        ticTacToeSquare_8.addActionListener(this);
-        */
         
         //Setting up ticTacToeGrid Array (This will be used to determine if a player won
         clearTicTacToeAreaGridArray();
@@ -66,6 +56,9 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
         
         //Creating an instance stack to be used for the Undo functionality
         previousPlayerActions = new Stack();
+        
+        //Since no one has had a turn, setting to zero
+        numberOfTurnsCompleted = 0;
     }
 
     /**
@@ -301,7 +294,7 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
     private void undo_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undo_BtnActionPerformed
         //Checking if there are actions to undo
         if (!previousPlayerActions.empty()){    //If the stack is not empty
-            PreviousPlayerAction prevAction = previousPlayerActions.pop();
+            PreviousPlayerAction prevAction = previousPlayerActions.pop();  //Removing the last saved turn
         
             //Setting the current players turn to the one that was stored
             if (playersTurn != prevAction.getPlayersTurn()){    //Checking if the playersTurn value needs to be updated
@@ -310,6 +303,9 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
 
             //Setting the current ticTacToeAreaGrid to the one that was stored
             ticTacToeAreaGrid = prevAction.getGridLayout();
+            
+            //Updating the the total number of turns that have been completed
+            numberOfTurnsCompleted = prevAction.getNumOfCompletedTurns();
 
             //Updating the GUI (The Tic Tac Toes Square) to reflect the changes
             refreshTicTacToeSquares();
@@ -387,6 +383,10 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
             //Taking a hard copy of the current state of the game
             takeHardCopyOfCurrentStateOfGame();
             
+            //Incrementing the number of turns that have occurred
+            numberOfTurnsCompleted++;
+            System.out.println(numberOfTurnsCompleted);
+            
             //Checking which player click the square
             if (playersTurn == 0){
                 btnThatWasClicked.setText("X"); //Putting an X in the btn that was clicked
@@ -418,6 +418,16 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
                     }
                 }else{
                     switchPlayerTurns();    //Making it player2's turn
+                }
+            }
+            
+            //Checking if all squares have been filled (so, 9 turns have occurred)
+            if (numberOfTurnsCompleted >= 9){
+                if(JOptionPane.showConfirmDialog(rootPane, "It was a Draw! \n Would you like to play again?") == JOptionPane.YES_OPTION){
+                    //Restarting the game
+                    restartGame();
+                }else{
+                    System.exit(0); //Closing the Game
                 }
             }
         }else{ //This button is not blank so, telling the users this button has already been clicked
@@ -465,6 +475,7 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
         clearTicTacToeGUISquares();
         getAndSetStartingPlayer();
         previousPlayerActions = new Stack();    //Clearing the stack of previous user actions
+        numberOfTurnsCompleted = 0;
     }
     
     private int checkIfWinner(int playerNum){
@@ -518,7 +529,7 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
             }
         }
         
-        previousPlayerActions.push(new PreviousPlayerAction(playersTurn, tmpGrid));
+        previousPlayerActions.push(new PreviousPlayerAction(playersTurn, tmpGrid, numberOfTurnsCompleted));
     }
     
     //Updates the GUI Tic Tac Toe Square to reflect the current values in the ticTacToeGridArea Array
