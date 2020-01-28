@@ -81,7 +81,6 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
         ticTacToeSquare_7 = new javax.swing.JButton();
         ticTacToeSquare_8 = new javax.swing.JButton();
         userInfoArea = new javax.swing.JPanel();
-        howToPlay_Btn = new javax.swing.JButton();
         undo_Btn = new javax.swing.JButton();
         restart_Btn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -176,9 +175,6 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
 
         userInfoArea.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
-        howToPlay_Btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        howToPlay_Btn.setText("How to play?");
-
         undo_Btn.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         undo_Btn.setText("Undo");
         undo_Btn.addActionListener(new java.awt.event.ActionListener() {
@@ -220,7 +216,6 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
                         .addContainerGap()
                         .addGroup(userInfoAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(undo_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(howToPlay_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(restart_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(userInfoAreaLayout.createSequentialGroup()
                         .addGroup(userInfoAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,8 +249,6 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(playerTurn_Label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(howToPlay_Btn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(undo_Btn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(restart_Btn)
@@ -350,7 +343,6 @@ public class PlayArea_GUI extends javax.swing.JFrame implements ActionListener {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton howToPlay_Btn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
